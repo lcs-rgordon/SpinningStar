@@ -10,17 +10,28 @@ import SwiftUI
 struct ContentView: View {
     
     // MARK: Stored properties
-    @State var selected = false
+    @State var emptyStarOpacity = 1.0
     
     // MARK: Computed properties
     var body: some View {
-        Image(systemName: selected ? "star.fill" : "star")
-            .resizable()
-            .frame(width: 40, height: 40)
-            .foregroundColor(.yellow)
-            .onTapGesture {
-                selected = true
-            }
+        
+        ZStack {
+
+            // Empty star
+            Image(systemName: "star")
+                .resizable()
+                .frame(width: 40, height: 40)
+                .foregroundColor(.yellow)
+                .opacity(emptyStarOpacity)
+                .onTapGesture {
+                    withAnimation(
+                        Animation.easeInOut(duration: 1.0)
+                    ) {
+                        emptyStarOpacity = 0.0
+                    }
+                }
+
+        }
         
     }
     
