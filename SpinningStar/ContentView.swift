@@ -8,10 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    // MARK: Stored properties
+    
+    
+    // MARK: Computed properties
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Image(systemName: "star")
+            .resizable()
+            .frame(width: 40, height: 40)
+            .foregroundColor(.yellow)
     }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
