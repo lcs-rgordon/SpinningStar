@@ -12,6 +12,7 @@ struct ContentView: View {
     // MARK: Stored properties
     @State var emptyStarOpacity = 1.0
     @State var filledStarOpacity = 0.0
+    @State var starRotation = 0.0
     
     // MARK: Computed properties
     var body: some View {
@@ -24,12 +25,16 @@ struct ContentView: View {
                 .frame(width: 40, height: 40)
                 .foregroundColor(.yellow)
                 .opacity(filledStarOpacity)
+                .rotation3DEffect(.degrees(starRotation),
+                                  axis: (x: 0, y: 1, z: 0))
                 .onTapGesture {
                     withAnimation(
                         Animation.easeInOut(duration: 1.0)
                     ) {
                         // Empty star fades in
                         emptyStarOpacity = 1.0
+                        // Stars spin
+                        starRotation += 360.0 * 2
                         // Filled star fades away
                         filledStarOpacity = 0.0
                     }
@@ -41,12 +46,16 @@ struct ContentView: View {
                 .frame(width: 40, height: 40)
                 .foregroundColor(.yellow)
                 .opacity(emptyStarOpacity)
+                .rotation3DEffect(.degrees(starRotation),
+                                  axis: (x: 0, y: 1, z: 0))
                 .onTapGesture {
                     withAnimation(
                         Animation.easeInOut(duration: 1.0)
                     ) {
                         // Empty star fades away
                         emptyStarOpacity = 0.0
+                        // Stars spin
+                        starRotation += 360.0 * 2
                         // Filled star fades in
                         filledStarOpacity = 1.0
                     }
